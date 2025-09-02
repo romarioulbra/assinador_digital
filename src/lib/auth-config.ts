@@ -1,10 +1,11 @@
 // lib/auth-config.ts
 import Credentials from "next-auth/providers/credentials";
-import { PrismaClient } from "@prisma/client";
+// import { PrismaClient } from "@prisma/client";
+import { prisma } from "./prisma";
 import { verifyPassword } from "@/lib/auth";
 import type { NextAuthOptions } from "next-auth";
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
 export const authOptions: NextAuthOptions = {
   providers: [
