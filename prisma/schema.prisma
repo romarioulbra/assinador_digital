@@ -12,9 +12,9 @@ model Usuario {
   id         Int        @id @default(autoincrement())
   nome       String
   email      String     @unique
-  senha      String     // Adicionando campo para senha (hash)
+  senha      String
   chavePub   String
-  chavePriv  String     // Criptografada
+  chavePriv  String
   assinaturas Assinatura[]
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt

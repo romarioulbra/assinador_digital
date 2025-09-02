@@ -1,0 +1,4 @@
+// auth.ts (simplificado)
+import { auth,signIn,signOut } from './lib/auth-config';
+
+

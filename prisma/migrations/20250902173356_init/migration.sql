@@ -3,8 +3,11 @@ CREATE TABLE "public"."Usuario" (
     "id" SERIAL NOT NULL,
     "nome" TEXT NOT NULL,
     "email" TEXT NOT NULL,
+    "senha" TEXT NOT NULL,
     "chavePub" TEXT NOT NULL,
     "chavePriv" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Usuario_pkey" PRIMARY KEY ("id")
 );
