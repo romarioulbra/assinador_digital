@@ -1,0 +1,41 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id         Int        @id @default(autoincrement())
+  nome       String
+  email      String     @unique
+  senha      String     // Adicionando campo para senha (hash)
+  chavePub   String
+  chavePriv  String     // Criptografada
+  assinaturas Assinatura[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+}
+
+model Assinatura {
+  id        Int      @id @default(autoincrement())
+  usuario   Usuario  @relation(fields: [usuarioId], references: [id])
+  usuarioId Int
+  texto     String
+  hash      String
+  assinatura String
+  createdAt DateTime @default(now())
+  logs      LogVerificacao[]
+}
+
+model LogVerificacao {
+  id           Int         @id @default(autoincrement())
+  assinatura   Assinatura  @relation(fields: [assinaturaId], references: [id])
+  assinaturaId Int
+  resultado    String      // VALIDA / INVALIDA
+  dataHora     DateTime    @default(now())
+  algoritmo    String
+}
